@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja" >
+<!-- [注意！]このファイルを名前を付けて別名で保存したら，施設の番号を確認し，
+  <input type="hidden" id="obj_id" value="0">のvalueの値を変更すること -->
+<head>
+  <meta charset="UTF-8">
+  <title>ページ4</title>
+  
+  <!-- CSSの設定（Bootstrap 5を利用する→部品の使い方は各自で調べること） -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <!-- CSSの設定（演習ではcssフォルダのProA_style.cssを編集してクラスを設定すること） -->
+  <link rel="stylesheet" href="css/ProA_style.css">
+
+  <!-- lightbox -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.css" rel="stylesheet">
+
+  <!-- 評価を☆で表す（https://cortyuming.hateblo.jp/entry/2017/03/22/131457 から作成） -->
+  <link rel="stylesheet" href="css/star-rating.css">
+
+</head>
+
+<body>
+  <!-- ページ上部に常時表示される部分にBootstrapのNavbarというコンポーネント（部品）を表示 -->
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="#">project1-o</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="./detail_example_4.html?id=4">ページ3<span class="sr-only">(current)</span></a> <!-- hrefのリンク先は各自で修正すること -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./top.html?id=0">トップページ</a><!-- hrefのリンク先は各自で修正すること -->
+          </li>
+          <li class="nav-item">
+	  <li class="nav-item">
+            <a class="nav-link" href="./detail_example_2.html?id=3">ラスカ</a><!-- hrefのリンク先は各自で修正すること -->
+          </li>
+	  <li class="nav-item">
+            <a class="nav-link" href="./detail_example_3.html?id=4">茅ヶ崎駅</a><!-- hrefのリンク先は各自で修正すること -->
+          </li>
+	  <li class="nav-item">
+            <a class="nav-link" href="./detail_example_4.html?id=5">アクセス</a><!-- hrefのリンク先は各自で修正すること -->
+          </li>
+
+          <li class="nav-item dropdown"> <!--クリックされて出てくるメニュー-->
+            <a class="nav-link dropdown-toggle" href="#"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">カテゴリ</a><!-- hrefのリンク先は各自で修正すること -->
+            <div class="dropdown-menu" aria-labelledby="navbarDropDown"><!--クリックされて出てくるメニュー（枠）-->
+              <a class="dropdown-item" href="top.html?id=0">トップページ</a><!--ドロップダウンメニューの項目 -->
+              <a class="dropdown-item" href="detail_example_2.html?id=2" disabled>ラスカ</a>
+	      <a class="dropdown-item" href="detail_example_3.html?id=4" disabled>茅ヶ崎駅</a>
+	      <a class="dropdown-item" href="detail_example_4.html?id=5" disabled>アクセス</a>
+          </li>
+          <!-- ここに項目<li>～</li>を増やす -->
+        </ul>
+      </div>
+    </nav>
+	</header>
+
+  <main role="main" class="pt-5" >
+
+	  <input type="hidden" id="obj_id" value="0"><!-- このvalueの値を変更して，data.jsonから施設ごとのデータを読み込む -->
+	  <!-- ページの見出し -->
+	  <section class="jumbotron text-center my-5 mx-5" id="bg-head">
+	 	  <div class="container">
+  		  <h1 class="jumbotron-heading">利便性</h1>
+			  <p>
+         東海道本線は東京駅発着系統と、新宿駅経由で大宮駅から高崎線に直通する湘南新宿ライン、<br>東京駅経由で上野駅から宇都宮線・高崎線に直通する上の東京ラインが停車する。<br>
+         </p>
+		  </div>
+    </section>
+
+    <div class="row m-3"><!-- 紹介対象の内容（ここから）-->
+      <div class="col-md-5" class="localNavigation-1" >
+	<div id="image_list"><figure>
+<img src="data:image/jpeg;base64,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      
+">
+</figure>
+</div>
+</div>
+      <div class="col-md-7" class="content-1">
+        <h2 class="pl-1 bg-lightblue">茅ヶ崎駅からのアクセス
+	<h2>説明</h2>
+				<div class="img-fluid m-5 border-dashed box-shadow">
+				<h3 class="pl-3">追加の画像：</h3>
+ 				<!--（注：LightBox2のファイルがコピーされていなければ，別ページが開く，という動作になる．）-->
+		 		<div id="image_list"></div>
+
+				<!-- 評価の☆を表示する -->
+				<h3 class="pl-3">評価：</h3>
+
+				<div class="star-rating col-5 m-3 mb-5">
+					<!-- width: ○○%が☆5つに対する評価のパーセンテージ（例：4.5→90%） -->
+					<div class="star-rating-front" style="width: 95%">★★★★★</div>
+					<div class="star-rating-back">★★★★★</div>
+				</div>
+
+		  	<!-- 地図の表示(JavaScript) -->
+				<h3 class="pl-3">場所：茅ヶ崎駅から～</h3>
+      	<div id="map_here" class="col-5 m-5 mb-5">
+      		</div>
+		</div>
+	</div>
+    <!-- <span class="text-muted">It'll blow your mind.</span> -->
+    <!-- 紹介対象の内容（ここまで）-->
+    
+  </main>
+
+  <!-- フッターの表示 -->
+  <footer class="footer">
+  <p>(C) All Right Reserved, 2015-2021, Infosys Project O</p>
+  <p>topに戻りたい方はこちらから↓</p>
+    <nav>
+      <ul>
+       <li><a href="#bg-head"">topに戻る</li></a>
+      </ul>
+    </nav>
+    </footer>
+	
+  <!-- JavaScriptのライブラリ（jQueryは基本ライブラリ+Bootstrap用のJavaScriptファイル） -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+  <!-- lightbox2を表示するためのJavaScriptファイル -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js" type="text/javascript">
+  </script>
+
+  <!-- 地図の表示(JavaScript) --><!-- leaflet.js+OpenStreet MapによるMapの表示 -->
+	<!-- headタグ内でCSSとLeafletを読み込む -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+   crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+   integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+   crossorigin=""></script>
+
+  <!-- 詳細情報のデータをDBからJSONから読み取り -->
+  <script src="js/readJSON.js"></script>
+
+</body>
+
+</html>
